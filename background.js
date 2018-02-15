@@ -5,8 +5,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 });
 
 chrome.pageAction.onClicked.addListener(function (tab) {
-  var nextPageUrl = tab.url.replace(/\d+\.\d+$/, function(match, p1){
-      return parseFloat(p1) + 1;
+  var nextPageUrl = tab.url.replace(/\d+\.\d+$/, function(match){
+      var nextPageSuffix = parseFloat(match) + 1;
+			return nextPageSuffix.toFixed(4);
   })
   chrome.tabs.update({url: nextPageUrl});
 });
